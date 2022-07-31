@@ -14,10 +14,37 @@ const cardPost = async (req, res) => {
 const cardGets = async (req, res) => {
   try {
     const cards = await Card.find({});
-    res.status(201).json({ message: "get cards successful", cards });
+    res.status(201).json(cards);
   } catch (err) {
     console.log(err);
   }
 };
 
-module.exports = { cardPost, cardGets };
+const cardPatch = async (req, res) => {
+  const { title, name, learn } = req.body;
+  try {
+    const { id: _id } = req.params;
+    const user = await Card.findById(_id);
+    user.title = title ?? user.title;
+    user.name = name ?? user.name;
+    user.learn = learn ?? user.learn;
+
+    await user.save();
+    console.log(user);
+    res.status(201).json({ message: "update successful", user });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const cardDelete = async (req, res) => {
+  try {
+    const { id } = req.body;
+    await Card.findOneAndDelete(id);
+    res.status(203).json();
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+module.exports = { cardPost, cardGets, cardPatch, cardDelete };

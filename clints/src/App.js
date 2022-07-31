@@ -1,10 +1,22 @@
 import "./App.css";
+import CardForm from "./components/Form/CardForm";
+import Cards from "./components/Card/Cards";
+import { Container, Col, Row } from "react-bootstrap";
 
 function App() {
   return (
-    <div className="App">
-      <h1>This is app</h1>
-    </div>
+    <Container>
+      <Row style={{ marginTop: "40px" }}>
+        <Col lg="8">
+          {" "}
+          <Cards />{" "}
+        </Col>
+        <Col lg="4">
+          {" "}
+          <CardForm />{" "}
+        </Col>
+      </Row>
+    </Container>
   );
 }
 

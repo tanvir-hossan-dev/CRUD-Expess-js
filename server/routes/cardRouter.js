@@ -1,9 +1,9 @@
 const router = require("express").Router();
 const cardController = require("../controllers/cardController");
 
-router.patch("/:id");
+router.patch("/:id", cardController.cardPatch);
 
-router.delete("/:id");
+router.delete("/:id", cardController.cardDelete);
 
 router.get("/", cardController.cardGets);
 
