@@ -30,7 +30,6 @@ const cardPatch = async (req, res) => {
     user.learn = learn ?? user.learn;
 
     await user.save();
-    console.log(user);
     res.status(201).json({ message: "update successful", user });
   } catch (err) {
     console.log(err);
@@ -39,8 +38,8 @@ const cardPatch = async (req, res) => {
 
 const cardDelete = async (req, res) => {
   try {
-    const { id } = req.body;
-    await Card.findOneAndDelete(id);
+    const { id: _id } = req.params;
+    await Card.findByIdAndDelete(_id);
     res.status(203).json();
   } catch (err) {
     console.log(err);

@@ -8,15 +8,14 @@ const UpdateForm = ({ item, handleClose }) => {
   const [title, setTitle] = useState(item.title || "");
   const [name, setName] = useState(item.name || "");
   const [learn, setLearn] = useState(item.learn || "");
+  const { _id } = item;
 
   console.log(item);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(item);
     try {
       const { data } = await axios
-        .patch(`http://localhost:4000/api/v1/card/${item._id}`, {
+        .patch(`http://localhost:4000/api/v1/card/${_id}`, {
           title,
           name,
           learn,
